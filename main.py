@@ -29,11 +29,11 @@ for i in range(odmocnina):
 
 y = 0
 x = odmocnina // 2
-if isprime(odmocnina):
+if odmocnina % 2 == 0:
     x -= 1
     y -= 1
-
-sloupce[y] = sloupce[y][:x] + "X" + sloupce[y][x+1:]
+y = odmocnina // 2
+sloupce[y] = sloupce[y][:x] + 'X' + sloupce[y][x+1:]
 # doprava, 1 .. nahoru, 2 .. doleva, 3 .. dolu
 smer = 0
 
@@ -41,28 +41,28 @@ for i in range(2, n):
     # doprava
     if smer == 0:
         x += 1
-        if sloupce[y - 1][:x] == "":
+        if sloupce[y - 1][x] == ' ':
             smer = 1
     # nahoru
     elif smer == 1:
         y -= 1
-        if sloupce[y][:x - 1] == "":
+        if sloupce[y][x - 1] == ' ':
             smer = 2
     # doleva
     elif smer == 2:
         x -= 1
-        if sloupce[y + 1][:x] == "":
+        if sloupce[y + 1][x] == ' ':
             smer = 3
     # dolu
     elif smer == 3:
         y += 1
-        if sloupce[y][:x + 1] == "":
+        if sloupce[y][x + 1] == ' ':
             smer = 0
 
     if isprime(i):
-        sloupce[y] = sloupce[y][:x] + "." + sloupce[y][x + 1:]
+        sloupce[y] = sloupce[y][:x] + '.' + sloupce[y][x + 1:]
     else:
-        sloupce[y] = sloupce[y][:x] + "#" + sloupce[y][x + 1:]
+        sloupce[y] = sloupce[y][:x] + '#' + sloupce[y][x + 1:]
 
 file = input("Pod jakým názvem chcete uložit soubor?")
 output = open(file, "w")
